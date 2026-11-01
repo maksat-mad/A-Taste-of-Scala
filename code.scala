@@ -1,23 +1,20 @@
 import scala.collection.mutable.ArrayBuffer
 
-enum Topping:
-  case Cheese, Pepperoni, Mushrooms
+@main def run(): Unit =
+  val numbers = ArrayBuffer(1, 2, 3)
 
-import Topping.*
-class Pizza:
-  val toppings = ArrayBuffer[Topping]()
+  // Add an element
+  numbers += 4
+  println(numbers)
 
-val p = Pizza()
+  // Add multiple elements
+  numbers ++= Seq(5, 6)
+  println(numbers)
 
-extension (s: String)
-  def capitalizeAllWords = s.split(" ").map(_.capitalize).mkString(" ")
+  // Remove an element
+  numbers -= 2
+  println(numbers)
 
-val hwUpper = "hello, world".capitalizeAllWords
-
-type Money = BigDecimal
-
-// more definitions here as desired ...
-
-@main def myApp =
-  p.toppings += Cheese
-  println("show me the code".capitalizeAllWords)
+  // Remove by index
+  numbers.remove(0)
+  println(numbers)
