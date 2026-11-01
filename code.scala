@@ -1,20 +1,17 @@
 import scala.collection.mutable.ArrayBuffer
 
 @main def run(): Unit =
-  val numbers = ArrayBuffer(1, 2, 3)
+  trait Animal:
+    val name: String
+  case class Cat(name: String) extends Animal:
+    def meow: String = "Meow"
+  case class Dog(name: String) extends Animal:
+    def bark: String = "Bark"
 
-  // Add an element
-  numbers += 4
-  println(numbers)
+  def speak(animal: Animal) = animal match
+    case c @ Cat(name) if name == "Felix" => println(s"$name says, ${c.meow}!")
+    case d @ Dog(name) if name == "Rex" => println(s"$name says, ${d.bark}!")
+    case _ => println("I don't know you!")
 
-  // Add multiple elements
-  numbers ++= Seq(5, 6)
-  println(numbers)
-
-  // Remove an element
-  numbers -= 2
-  println(numbers)
-
-  // Remove by index
-  numbers.remove(0)
-  println(numbers)
+  speak(Cat("Felix")) // "Felix says, Meow!"
+  speak(Dog("Rex"))   // "Rex says, Bark!"
